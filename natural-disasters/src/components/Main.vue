@@ -20,7 +20,7 @@
     <th>Map</th>
    </tr>
    <tr v-for="item in events" v-bind:key="item.id">
-     <td>{{item.title}}</td><td>{{item.date}}</td><td><a v-bind:href="item.coordinates">link to map</a></td>
+     <td>{{item.title}}</td><td>{{item.date}}</td><td><a v-bind:href="'https://www.google.com/maps/search/?api=1&query=' + item.coordinates">{{item.coordinates}}</a></td>
     </tr>
   </table>
 
@@ -31,7 +31,7 @@
 <script>
 import axios from "axios";
 export default {
-  name: 'HelloWorld',
+  name: 'Main',
   data() {
     return {
       selected: 'Wildfires',
@@ -43,12 +43,11 @@ export default {
   methods:{
     get_events(){
       console.log(this.selected);
-      axios.post('http://127.0.0.1:8000/api/get_by_category?pages='+this.pages, 
+      axios.post('http://127.0.0.1:8000/api/get_by_category?pages=', 
             {
               'category': this.selected,
             })
             .then((response) => {
-                // console.log(response);
                 this.events = response.data;
             })
     }
@@ -56,7 +55,6 @@ export default {
   mounted(){
     axios.get('http://127.0.0.1:8000/api/get_categories')
      .then((response) => { 
-      //  console.log(response.data);
        this.categories = response.data;
       });
     this.get_events();

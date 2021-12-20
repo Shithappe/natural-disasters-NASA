@@ -22,22 +22,18 @@ class EventsController extends Controller
         ])->get('https://eonet.gsfc.nasa.gov/api/v2.1/events?api_key=yjUjEyzPh5dAhJQMqxu6b6HOTbrs4GGyWGsXBsqj');
     
         $response = json_decode($response)->events; //arr of events
-        // return $response;
-       
-        $res = [];
+
         
         foreach ($response as $i){
  
-            array_push($res, $i);
-
             $events = Events::create([
                 'title' => $i->title,
                 'categories_id' => $i->categories[0]->id,
                 'date' => $i-> geometries[0]->date,
-                'coordinates' => 'https://www.google.com/maps/@' . $i->geometries[0]->coordinates[0] . ',' . $i->geometries[0]->coordinates[0] . ',' . '5z'
+                'coordinates' => $i->geometries[0]->coordinates[0] . ',' . $i->geometries[0]->coordinates[1]
             ]);
         }
-        return $res;
+        return response('Seted Events', 201);
 
     }
 

@@ -25,19 +25,15 @@ class CategoriesController extends Controller
         ])->get('https://eonet.gsfc.nasa.gov/api/v2.1/categories?api_key=yjUjEyzPh5dAhJQMqxu6b6HOTbrs4GGyWGsXBsqj');
     
         $response = json_decode($response)->categories;
-       
-        $res = [];
-        
+               
         foreach ($response as $i){
- 
-            array_push($res, $i);
 
             $categories = Categories::create([
                 'id' => $i->id,
                 'title' => $i->title
             ]);
         }
-        return $res;
+        return response('Seted Categories', 201);
     }
 
     public function get_categories(){
@@ -45,7 +41,8 @@ class CategoriesController extends Controller
     }
 
 
-    public function get_category_id(Request $request){
+    public function get_events_by_category_id(Request $request){
+        // return $request;
         $category = Categories::where('title', $request->category)->get();
         $id = $category[0]->id;
 
