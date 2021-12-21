@@ -30,7 +30,7 @@ class EventsController extends Controller
                 'title' => $i->title,
                 'categories_id' => $i->categories[0]->id,
                 'date' => $i-> geometries[0]->date,
-                'coordinates' => $i->geometries[0]->coordinates[0] . ',' . $i->geometries[0]->coordinates[1]
+                'coordinates' => $i->geometries[0]->coordinates[1] . ',' . $i->geometries[0]->coordinates[0]
             ]);
         }
         return response('Seted Events', 201);

@@ -41,12 +41,19 @@ class CategoriesController extends Controller
     }
 
 
+    // public function get_events_by_category_id(Request $request){
+    //     $category = Categories::where('title', $request->category)->get();
+    //     $id = $category[0]->id;
+
+    //     $events = Events::where('categories_id', $id)->simplePaginate($request->query('pages'));
+    //     return $events;
+    // }
+
     public function get_events_by_category_id(Request $request){
-        // return $request;
-        $category = Categories::where('title', $request->category)->get();
+        $category = Categories::where('title', $request->query('category'))->get();
         $id = $category[0]->id;
 
-        $events = Events::where('categories_id', $id)->get();
+        $events = Events::where('categories_id', $id)->simplePaginate($request->query('pages'));
         return $events;
     }
 
