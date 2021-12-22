@@ -29,34 +29,27 @@ export default {
 
 <style scoped>
 table, table td, table th {
-  border: 1px solid black;
+  border: 1px solid #ccc;
   /* border-collapse: collapse; */
   padding: 1rem;
 }
 
 table{ 
+    border: none;
+      font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;
   border-spacing: 1; 
   border-collapse: collapse; 
   background:rgba(233, 233, 233, 0.61);
-  border-radius:6px;
+  border-radius: 10px;
   overflow:hidden;
   max-width:800px; 
   width:100%;
-  margin:0 auto;
+  margin: 20px auto;
+  box-shadow: 0 15px 30px -10px;
 }
 
 td{
     background:rgba(196, 196, 196, 0.61);
 }
   
-  
-  td,th           { padding-left:8px}
-
-  thead tr        { 
-    height:60px;
-    background:#FFED86;
-    font-size:16px;
-  }
-  
-  tbody tr        { height:48px; border-bottom:1px solid #E3F1D5 ;}
 </style>
