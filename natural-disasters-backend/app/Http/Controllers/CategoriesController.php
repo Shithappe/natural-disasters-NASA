@@ -18,29 +18,11 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function set_categories()
-    {
-        $response = Http::withHeaders([
-            'Accept' => 'application/json'
-        ])->get('https://eonet.gsfc.nasa.gov/api/v2.1/categories?api_key=yjUjEyzPh5dAhJQMqxu6b6HOTbrs4GGyWGsXBsqj');
-    
-        $response = json_decode($response)->categories;
-               
-        foreach ($response as $i){
 
-            $categories = Categories::create([
-                'id' => $i->id,
-                'title' => $i->title
-            ]);
-        }
-        return response('Seted Categories', 201);
-    }
 
     public function get_categories(){
         return Categories::select('title')->get();
     }
-
-
 
     public function get_events_by_category_id(Request $request){
         $category = Categories::where('title', $request->query('category'))->get();

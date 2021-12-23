@@ -24,7 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/get_categories', [CategoriesController::class, 'get_categories']);
-Route::get('/set_categories', [CategoriesController::class, 'set_categories']);
-Route::get('/set_events', [EventsController::class, 'set_events']);
 Route::get('/get_events', [EventsController::class, 'get_events']);
 Route::get('/get_by_category', [CategoriesController::class, 'get_events_by_category_id']);

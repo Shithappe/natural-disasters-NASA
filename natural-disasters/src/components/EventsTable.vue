@@ -28,24 +28,23 @@ export default {
 </script>
 
 <style scoped>
-table, table td, table th {
+table, td, th {
   border: 1px solid #ccc;
-  /* border-collapse: collapse; */
   padding: 1rem;
 }
 
 table{ 
     border: none;
-      font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;
-  border-spacing: 1; 
-  border-collapse: collapse; 
-  background:rgba(233, 233, 233, 0.61);
-  border-radius: 10px;
-  overflow:hidden;
-  max-width:800px; 
-  width:100%;
-  margin: 20px auto;
-  box-shadow: 0 15px 30px -10px;
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;
+    border-spacing: 1; 
+    border-collapse: collapse; 
+    background:rgba(233, 233, 233, 0.61);
+    border-radius: 10px;
+    overflow:hidden;
+    max-width:800px; 
+    width:100%;
+    margin: 20px auto;
+    box-shadow: 0 15px 30px -10px;
 }
 
 td{

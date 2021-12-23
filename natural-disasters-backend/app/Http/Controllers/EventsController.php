@@ -15,27 +15,6 @@ class EventsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function set_events()
-    {
-        $response = Http::withHeaders([
-            'Accept' => 'application/json'
-        ])->get('https://eonet.gsfc.nasa.gov/api/v2.1/events?api_key=yjUjEyzPh5dAhJQMqxu6b6HOTbrs4GGyWGsXBsqj');
-    
-        $response = json_decode($response)->events; //arr of events
-
-        
-        foreach ($response as $i){
- 
-            $events = Events::create([
-                'title' => $i->title,
-                'categories_id' => $i->categories[0]->id,
-                'date' => $i-> geometries[0]->date,
-                'coordinates' => $i->geometries[0]->coordinates[1] . ',' . $i->geometries[0]->coordinates[0]
-            ]);
-        }
-        return response('Seted Events', 201);
-
-    }
 
     public function get_events(){
         return Events::all();

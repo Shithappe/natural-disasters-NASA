@@ -34,23 +34,22 @@ span{
 
 }
 button{
-  font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;
 
-  width: 15vw;
-  height: 40px;
-  margin: 0 15px;
+    width: 15vw;
+    height: 40px;
+    margin: 0 15px;
 
 
     font-size: 19px;
     color: whitesmoke;
-  letter-spacing: 1px;
+    letter-spacing: 1px;
 
-  align-items: center;
-  justify-content: center;
-  border: 5px solid black;
-  background: rgb(31, 31, 31);
-  box-sizing: border-box;
-  border-radius: 5px;
-
+    align-items: center;
+    justify-content: center;
+    border: 5px solid black;
+    background: rgb(31, 31, 31);
+    box-sizing: border-box;
+    border-radius: 5px;
 }
 </style>
