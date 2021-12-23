@@ -1,16 +1,20 @@
-# natural-disasters-NASA
+# Natural Disasters NASA
 You can see list natural disasters in NASA datadase.
-<h2>How to run</h2>
-You need Laravel and Vue.
+## Technologies
+- **Backend:** Laravel, MySQL;
+- **Frontend:** Vue.js, Vuex;
 
-### Run backend:
-  ```cd natural-disasters-backend```<br>
-  ```php artisan command:init``` <br>
-  ```php artisan serve```<br>
+## Get Started:
+### Backend
+```bash
+cd natural-disasters-backend
+php artisan command:init
+php artisan serve
+```
 
-### Run frontend:
-```cd ../natural-disasters```<br>
-```npm i```<br>
-```npm run serve```
-
-
+### Frontend:
+```bash
+cd ../natural-disasters
+npm i
+npm run serve
+```
