@@ -10,7 +10,7 @@ export default new Vuex.Store({
         selectedCategory: 'Wildfires',
         categories: [],
         events: [],
-        pages: 100,
+        pages: 200,
         currentPage: 1,
         nextPageUrl: '',
         prevPageUrl: '',
@@ -21,6 +21,10 @@ export default new Vuex.Store({
 
         markers(state){
             return state.markers;
+        },
+
+        markerById: (state) => (id) =>  {
+            return state.markers.find(x => x.id === id);
         },
 
         selectedCategory(state) {
@@ -56,6 +60,10 @@ export default new Vuex.Store({
 
         markers(state, data) {
             state.markers = data;
+        },
+
+        addMarker(state, data) {
+            state.markers.push(data);
         },
 
         selectedCategory(state, data) {
@@ -107,15 +115,16 @@ export default new Vuex.Store({
                 commit('prevPage', response.data.prev_page_url);  
                 commit('currentPage', response.data.current_page);
 
-                let temp = [];
+                commit('markers', []);
                 this.state.events.forEach(function(item) {
-                    temp.push({
+                    commit('addMarker', {
+                        id: item.id,
                         full_name: item.title,
-                        lat: item.coordinates.split(',')[0],
-                        lng: item.coordinates.split(',')[1]   
-                    })
+                        lat: Number(item.coordinates.split(',')[0]),
+                        lng: Number(item.coordinates.split(',')[1]),
+                        date: item.date
+                    });
                 });
-                commit('markers', temp)
             });
             
         },

@@ -1,26 +1,13 @@
 <template>
   <div>
-    <!-- <h1>{{markers}}</h1> -->
-    <!-- <gmap-map
-        :zoom="5"    
-        :center="center"
-        style="width:100%;  height: 600px;"
-      >
-      <gmap-marker
-        :key="index"
-        v-for="(m, index) in locationMarkers"
-        :position="m.position"
-        @click="center=m.position"
-      ></gmap-marker>
-    </gmap-map> -->
         <gmap-map 
           ref="mymap" 
           :center="startLocation" 
-          :zoom="3" 
+          :zoom="zoom" 
           style="width: 100%; height: 800px"
         >
 
-          <gmap-info-window :options="infoOptions" :position="infoPosition" :opened="infoOpened" @closeclick="infoOpened=false">
+          <gmap-info-window :position="infoPosition" :opened="infoOpened" @closeclick="infoOpened=false">
             {{infoContent}}
           </gmap-info-window>
 
@@ -40,19 +27,12 @@
   import { mapGetters } from 'vuex';
 export default {
   name: "GoogleMap",
-      props: {
-        events: {
-            type: Array,
-            required: true
-        }
-    },
+      props: [
+        'chosenMarker'
+    ],
   data() {
     return {
-      myCoordinates: {},
-      center: { 
-        lat: 39.7837304,
-        lng: -100.4458825
-      },
+      zoom: 3,
       locationMarkers: [
         { 
         lat: 39.7837304,
@@ -62,28 +42,27 @@ export default {
       locPlaces: [],
       existingPlace: null,
 
-
       startLocation: {
-        lat: 10.3157,
-        lng: 123.8854
+        lat: 20.0,
+        lng: 12.0
     },
     infoPosition: null,
     infoContent: null,
     infoOpened: false,
     infoCurrentKey: null,
-    infoOptions: {
-      pixelOffset: {
-        width: 0,
-        height: -35
-      }
-    },
     };
   },
-
   computed: {
     ...mapGetters([
       'markers',
     ]),
+  },
+
+  watch: {
+    chosenMarker: function(newMarker) {
+      this.startLocation = newMarker;
+      this.zoom = 10;
+    }
   },
   created() {
     this.locateGeoLocation();
@@ -125,6 +104,8 @@ export default {
     toggleInfo: function(marker, key) {
       this.infoPosition = this.getPosition(marker);
       this.infoContent = marker.full_name;
+      //  + `` + marker.date;
+
       if (this.infoCurrentKey == key) {
         this.infoOpened = !this.infoOpened;
       } else {

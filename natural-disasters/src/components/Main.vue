@@ -2,7 +2,7 @@
   <div>
 
     <div id="map">
-       <GoogleMap :events="events"/>
+       <GoogleMap :chosenMarker="chosenMarker"/>
     </div>
 
     <br>
@@ -10,7 +10,7 @@
     <div class="main">
       <CategorySelect_PagesSelect/>
       <div class="table">
-        <events-table :events="events"/>
+        <events-table :events="events" @eventClick="setMarker"/>
       </div>
 
       <!-- <Pagination/> -->
@@ -35,15 +35,26 @@ export default {
     // Pagination,
     GoogleMap
   },
+  data() {
+    return {
+      chosenMarker: null
+    }
+  },
   computed: {
     ...mapGetters([
       'events',
+      'markerById'
     ]),
   },
   methods:{
     ...mapActions({
       fetchEvents: 'getEvents',
     }),
+
+    setMarker(id) {
+      console.log(id);
+      this.chosenMarker = this.markerById(id);
+    }
   },
 }
 </script>
@@ -72,12 +83,8 @@ export default {
   width: 3px;      
 }
 
-/* .table::-webkit-scrollbar-track {
-  background: rgba(255, 166, 0, 0.315);    
-} */
-
 .table::-webkit-scrollbar-thumb {
- background-color: rgba(56, 35, 35, 0.15);    /* color of the scroll thumb */
+ background-color: rgba(56, 35, 35, 0.15); 
   }
 
 #map{

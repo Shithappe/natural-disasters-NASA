@@ -1,24 +1,15 @@
 <template>
 <table>
   <tr>
-    <!-- <th>Title</th> -->
-    <!-- <th>Date</th> -->
-    <!-- <th>Map</th> -->
   </tr>
   <tbody>
   <tr v-for="item in events" :key="item.id">
     
-    <td>
+    <td @click="getInfo(item)">
       {{item.title}}
       <br>
       <span>{{item.date}}</span>
     </td>
-
-    <!-- <td>{{item.title}}</td>
-    <td>{{item.date}}</td> -->
-    <!-- <td>
-      <a :href="'https://www.google.com/maps/search/?api=1&query=' + item.coordinates" target="_blank">{{item.coordinates}}</a>
-    </td> -->
   </tr>
     </tbody>
 </table>
@@ -32,6 +23,12 @@ export default {
             type: Array,
             required: true
         }
+    },
+    methods: {
+    getInfo(item){
+      console.log(item.id);
+      this.$emit('eventClick', item.id);
+    }
     }
 }
 </script>
@@ -65,8 +62,4 @@ span{
   font-size: 12px;
   opacity: 75%;
 }
-
-
-
-  
 </style>
