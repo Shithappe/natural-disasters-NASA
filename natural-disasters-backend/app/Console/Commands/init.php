@@ -63,7 +63,7 @@ class init extends Command
             $events = Events::create([
                 'title' => $i->title,
                 'categories_id' => $i->categories[0]->id,
-                'date' => $i-> geometries[0]->date,
+                'date' => str_replace('-', '.', mb_strimwidth($i-> geometries[0]->date, 0, 10)),
                 'coordinates' => $i->geometries[0]->coordinates[1] . ',' . $i->geometries[0]->coordinates[0]
             ]);
         }

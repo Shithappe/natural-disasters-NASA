@@ -10,7 +10,7 @@ export default new Vuex.Store({
         selectedCategory: 'Wildfires',
         categories: [],
         events: [],
-        pages: 10,
+        pages: 100,
         currentPage: 1,
         nextPageUrl: '',
         prevPageUrl: ''

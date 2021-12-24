@@ -4,11 +4,11 @@
             <option v-for="category in categories" :key="category.id" :value="category.title">{{category.title}}</option>
         </select>
 
-        <select @change="fetchEvents" v-model="pages">
+        <!-- <select @change="fetchEvents" v-model="pages">
             <option>5</option>
             <option>10</option>
             <option>20</option>
-        </select>
+        </select> -->
     </div>
 </template>
 
@@ -55,12 +55,12 @@ export default {
 
 <style scoped>
 select{
-  margin: 20px;
+  text-align: center;
   font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   color: #60666d;
 
-  box-shadow: 0 15px 30px -10px;
+  box-shadow: 0px 2px 3px 1px rgba(34, 60, 80, 0.1);
   cursor: pointer;
   outline: none;
 }
