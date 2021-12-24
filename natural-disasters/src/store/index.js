@@ -13,10 +13,15 @@ export default new Vuex.Store({
         pages: 100,
         currentPage: 1,
         nextPageUrl: '',
-        prevPageUrl: ''
+        prevPageUrl: '',
+        markers: []
     },
 
     getters: {
+
+        markers(state){
+            return state.markers;
+        },
 
         selectedCategory(state) {
             return state.selectedCategory;
@@ -48,6 +53,10 @@ export default new Vuex.Store({
     },
 
     mutations: {
+
+        markers(state, data) {
+            state.markers = data;
+        },
 
         selectedCategory(state, data) {
             state.selectedCategory = data;
@@ -97,7 +106,18 @@ export default new Vuex.Store({
                 commit('nextPage', response.data.next_page_url);  
                 commit('prevPage', response.data.prev_page_url);  
                 commit('currentPage', response.data.current_page);
-            })
+
+                let temp = [];
+                this.state.events.forEach(function(item) {
+                    temp.push({
+                        full_name: item.title,
+                        lat: item.coordinates.split(',')[0],
+                        lng: item.coordinates.split(',')[1]   
+                    })
+                });
+                commit('markers', temp)
+            });
+            
         },
 
         nextPage({dispatch, getters}) {
@@ -117,6 +137,10 @@ export default new Vuex.Store({
             .then((response) => { 
             commit('categories', response.data);
             });
-        }
+        },
+
+        // purseMarkers() {
+        //     console.log('awd');
+        // }
     }
 })

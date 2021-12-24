@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- <h1>{{markers}}</h1> -->
     <!-- <gmap-map
         :zoom="5"    
         :center="center"
@@ -15,7 +16,7 @@
         <gmap-map 
           ref="mymap" 
           :center="startLocation" 
-          :zoom="5" 
+          :zoom="3" 
           style="width: 100%; height: 800px"
         >
 
@@ -24,7 +25,7 @@
           </gmap-info-window>
 
       <gmap-marker 
-        v-for="(item, key) in tempcoordinates" 
+        v-for="(item, key) in markers" 
         :key="key" 
         :position="getPosition(item)" 
         :clickable="true" 
@@ -36,16 +37,15 @@
 </template>
  
 <script>
-  import { mapActions, mapGetters } from 'vuex';
+  import { mapGetters } from 'vuex';
 export default {
-
   name: "GoogleMap",
-    //   props: {
-    //     events: {
-    //         type: Array,
-    //         required: true
-    //     }
-    // },
+      props: {
+        events: {
+            type: Array,
+            required: true
+        }
+    },
   data() {
     return {
       myCoordinates: {},
@@ -67,18 +67,6 @@ export default {
         lat: 10.3157,
         lng: 123.8854
     },
-    tempcoordinates: {
-      // 0: {
-      //   full_name: 'Erich  Kunze',
-      //   lat: '10.31',
-      //   lng: '123.89'
-      // },
-      // 1: {
-      //   full_name: 'Delmer Olson',
-      //   lat: '10.32',
-      //   lng: '123.89'
-      // }
-    },
     infoPosition: null,
     infoContent: null,
     infoOpened: false,
@@ -91,31 +79,18 @@ export default {
     },
     };
   },
+
   computed: {
     ...mapGetters([
-      'events',
+      'markers',
     ]),
   },
-  mounted() {
-
-    console.log(this.events);
-
-    // this.coordinates.forEach(function(item, i) {
-    //   console.log(item.coordinates.split(','), i);
-    //   // console.log(item.title);
-    // });
-
-    // this.tempcoordinates = this.myCoordinates;
-    // // console.log(this.myCoordinates);
-
-
+  created() {
     this.locateGeoLocation();
   },
  
   methods: {
-    ...mapActions({
-      fetchEvents: 'getEvents',
-    }),
+
     initMarker(loc) {
       this.existingPlace = loc;
     },
@@ -160,9 +135,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-div{
-  /* opacity: 50%; */
-}
-</style>

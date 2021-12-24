@@ -35,7 +35,6 @@ export default {
     // Pagination,
     GoogleMap
   },
-
   computed: {
     ...mapGetters([
       'events',
