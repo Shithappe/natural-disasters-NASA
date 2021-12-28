@@ -12,6 +12,8 @@ use App\Models\events;
 
 class init extends Command
 {
+    public static $url = 'https://eonet.gsfc.nasa.gov/api/v2.1/';
+    public static $key = '?api_key=yjUjEyzPh5dAhJQMqxu6b6HOTbrs4GGyWGsXBsqj';
     /**
      * The name and signature of the console command.
      *
@@ -46,6 +48,8 @@ class init extends Command
         Artisan::call('migrate:refresh');   
         $this->set_categories();
         $this->set_events();
+
+        echo "\nData has been successfully updated\n ";
     }
 
 
@@ -53,13 +57,12 @@ class init extends Command
     {
         $response = Http::withHeaders([
             'Accept' => 'application/json'
-        ])->get('https://eonet.gsfc.nasa.gov/api/v2.1/events?api_key=yjUjEyzPh5dAhJQMqxu6b6HOTbrs4GGyWGsXBsqj');
+        ])->get(static::$url . 'events' . static::$key);
     
-        $response = json_decode($response)->events; //arr of events
+        $response = json_decode($response)->events;
 
         
         foreach ($response as $i){
- 
             $events = Events::create([
                 'title' => $i->title,
                 'categories_id' => $i->categories[0]->id,
@@ -67,24 +70,21 @@ class init extends Command
                 'coordinates' => $i->geometries[0]->coordinates[1] . ',' . $i->geometries[0]->coordinates[0]
             ]);
         }
-        return response('Seted Events', 201);
     }
 
     public function set_categories()
     {
         $response = Http::withHeaders([
             'Accept' => 'application/json'
-        ])->get('https://eonet.gsfc.nasa.gov/api/v2.1/categories?api_key=yjUjEyzPh5dAhJQMqxu6b6HOTbrs4GGyWGsXBsqj');
+        ])->get(static::$url . 'categories' . static::$key);
     
         $response = json_decode($response)->categories;
                
         foreach ($response as $i){
-
             $categories = Categories::create([
                 'id' => $i->id,
                 'title' => $i->title
             ]);
         }
-        return response('Seted Categories', 201);
     }
 }

@@ -1,7 +1,7 @@
 <template>
 <div>
 
-<CategorySelect_PagesSelect/>
+<Filters/>
 
 <events-table :events="events"/>
 
@@ -13,14 +13,14 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import EventsTable from './EventsTable.vue';
-import CategorySelect_PagesSelect from './CategorySelect_PagesSelect.vue';
+import Filters from './Filters.vue';
 import Pagination from './Pagination.vue';
 
 export default {
   name: 'Main',
   components: {
     EventsTable,
-    CategorySelect_PagesSelect,
+    Filters,
     Pagination
   },
 

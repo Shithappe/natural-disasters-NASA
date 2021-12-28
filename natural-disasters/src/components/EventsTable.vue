@@ -9,7 +9,7 @@
     <td>{{item.title}}</td>
     <td>{{item.date}}</td>
     <td>
-      <a :href="'https://www.google.com/maps/search/?api=1&query=' + item.coordinates" target="_blank">{{item.coordinates}}</a>
+      <a :href="`https://www.google.com/maps/search/?api=1&query=${item.coordinates}`" target="_blank">{{item.coordinates}}</a>
     </td>
   </tr>
 </table>

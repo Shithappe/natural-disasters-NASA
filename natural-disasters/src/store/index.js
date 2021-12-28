@@ -98,6 +98,9 @@ export default new Vuex.Store({
                 commit('prevPage', response.data.prev_page_url);  
                 commit('currentPage', response.data.current_page);
             })
+            .catch(() => {
+                alert('Something went wrong');
+            })
         },
 
         nextPage({dispatch, getters}) {
@@ -115,7 +118,10 @@ export default new Vuex.Store({
         fetchCategories({commit}) {
             axios.get('http://127.0.0.1:8000/api/get_categories')
             .then((response) => { 
-            commit('categories', response.data);
+                commit('categories', response.data);
+            })
+            .catch(() => {
+                alert('Something went wrong');
             });
         }
     }

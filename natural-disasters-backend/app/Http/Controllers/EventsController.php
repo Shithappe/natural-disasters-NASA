@@ -16,10 +16,6 @@ class EventsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function get_events(){
-        return Events::all();
-    }
-
     /**
      * Show the form for creating a new resource.
      *

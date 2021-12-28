@@ -59,7 +59,6 @@ select{
   font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;
   font-size: 18px;
   color: #60666d;
-
   box-shadow: 0 15px 30px -10px;
   cursor: pointer;
   outline: none;
